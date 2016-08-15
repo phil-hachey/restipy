@@ -4,4 +4,6 @@
 
 *.pyc
 
+/config.yml
+
 kms_helper.egg-info

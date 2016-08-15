@@ -10,12 +10,12 @@ install_reqs = parse_requirements(
 reqs = [str(ir.req) for ir in install_reqs]
 
 setup(
-    name='hivemarket-batch',
+    name='batch-dispatcher',
     packages=find_packages(),
     install_requires=reqs,
     entry_points={
         'console_scripts': [
-            'hivemarket-batch = hivemarket_batch:main'
+            'batch-dispatcher = batch_dispatcher:main'
         ]
     }
 )
