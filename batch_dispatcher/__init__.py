@@ -1,6 +1,6 @@
-import json, yaml, boto3, os, requests
+import json, yaml, boto3, os, requests, base64
 
-from service import JwtService, KmsService, ResolverService
+from service import JwtService, KmsService
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -10,7 +10,8 @@ def handler(event, context):
     jinja_env = Environment(loader=FileSystemLoader(''))
     jinja_env.globals.update({
         'kms': KmsService(session),
-        'jwt': JwtService()
+        'jwt': JwtService(),
+        'base64': base64
     })
 
     event.update(os.environ)

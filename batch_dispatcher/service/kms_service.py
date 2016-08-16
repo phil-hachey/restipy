@@ -17,7 +17,6 @@ class KmsService:
             )
             plain_text = response['Plaintext']
         except(ClientError, TypeError):
-            print 'error'
             pass
 
         return ciphertext_blob
