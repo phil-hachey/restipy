@@ -2,3 +2,4 @@ boto3
 requests
 pyyaml
 python-jose
+jinja2

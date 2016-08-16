@@ -6,5 +6,5 @@ class JwtService:
         self.token_expiry = token_expiry
         self.token_signing_algorithm = token_signing_algorithm
 
-    def encode(self, private_key, payload):
+    def encode(self, payload, private_key):
         return jwt.encode(payload, private_key, algorithm=self.token_signing_algorithm)
