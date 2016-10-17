@@ -10,12 +10,12 @@ install_reqs = parse_requirements(
 reqs = [str(ir.req) for ir in install_reqs]
 
 setup(
-    name='batch-dispatcher',
+    name='restipy',
     packages=find_packages(),
     install_requires=reqs,
     entry_points={
         'console_scripts': [
-            'batch-dispatcher = batch_dispatcher:main'
+            'restipy = restipy:main'
         ]
     }
 )
