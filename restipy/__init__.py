@@ -1,21 +1,15 @@
-import json, yaml, boto3, requests, base64, time
-
-from service import KmsService
+import json, yaml, requests
 
 from jinja2 import Environment, FileSystemLoader
-from jose import jwt
 
 class RestipyService:
     def __init__(self, templateFilename):
-        session = boto3.session.Session()
-
         jinja_env = Environment(loader=FileSystemLoader(''))
-        jinja_env.globals.update({
-            'kms': KmsService(session),
-            'jwt': jwt,
-            'base64': base64,
-            'time': time
-        })
+
+        template_globals = __import__('restipy.plugin')
+        print template_globals
+
+        jinja_env.globals.update(template_globals)
 
         self.template = jinja_env.get_template(templateFilename)
 
