@@ -1,15 +1,17 @@
-import json, yaml, requests
+import json, yaml, requests, importlib, inspect
 
+from restipy.plugins import plugins
+from pkg_resources import iter_entry_points
 from jinja2 import Environment, FileSystemLoader
 
 class RestipyService:
     def __init__(self, templateFilename):
         jinja_env = Environment(loader=FileSystemLoader(''))
 
-        template_globals = __import__('restipy.plugin')
-        print template_globals
+        for entry_point in iter_entry_points(group='restipy.plugin', name=None):
+            plugins[entry_point.name] = entry_point.load()
 
-        jinja_env.globals.update(template_globals)
+        jinja_env.globals.update(plugins)
 
         self.template = jinja_env.get_template(templateFilename)
 
