@@ -12,10 +12,5 @@ reqs = [str(ir.req) for ir in install_reqs]
 setup(
     name='restipy',
     packages=find_packages(),
-    install_requires=reqs,
-    entry_points={
-        'console_scripts': [
-            'restipy = restipy:main'
-        ]
-    }
+    install_requires=reqs
 )
