@@ -1,16 +1,20 @@
 from setuptools import setup, find_packages
-from pip.req import parse_requirements
-import pip
-
-# parse_requirements() returns generator of pip.req.InstallRequirement objects
-install_reqs = parse_requirements(
-    'requirements.txt', session=pip.download.PipSession())
-
-# reqs is a list of requirement
-reqs = [str(ir.req) for ir in install_reqs]
 
 setup(
+    version='0.2',
     name='restipy',
+    description=
+        '''
+            Core Restipy library. This library basically uses Jinja2 and the requests
+            library to build dynamic requests based on a template
+        ''',
+    author='Phil Hachey',
+    author_email='phil.hachey@bluespurs.com',
     packages=find_packages(),
-    install_requires=reqs
+    install_requires=[
+        'requests >= 2.11',
+        'pyyaml >= 3.12',
+        'python-jose >= 1.3',
+        'jinja2 >= 2.8'
+    ]
 )
