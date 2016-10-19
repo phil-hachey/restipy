@@ -1,4 +1,4 @@
-import json, yaml, requests, importlib, inspect
+import yaml, requests, importlib, inspect
 
 from restipy.plugins import plugins
 from pkg_resources import iter_entry_points
@@ -19,13 +19,12 @@ class RestipyService:
         configStr = self.template.render(params)
 
         config = yaml.load(configStr)
-
+        
+        responses = []
         for request in config['requests']:
-            response = requests.get(**request)
-            try:
-                print json.dumps(response.json())
-            except ValueError as error:
-                print error.message
+            responses.append(requests.get(**request))
+        
+        return responses
 
 if __name__ == '__main__':
     import sys, os
